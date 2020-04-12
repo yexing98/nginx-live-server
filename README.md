@@ -24,7 +24,7 @@ tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      
 #服务器启动正常的话，会看到1935端口和80号端口已经在监听中。重启nginx直播服务器[root@vultr~]#/usr/local/nginx/sbin/nginx -s reload"
 
 停止nginx直播服务器命令[root@vultr~]#/usr/local/nginx/sbin/nginx -s stop 启动nginx直播服务器命令[root@vultr~]#/usr/local/nginx/sbin/nginx -c  /usr/local/nginx/conf/nginx.conf
-
+脚本中网页服务器的nginx主目录已经设置为/home/html中，如果需要部署服务器直播管理后端，请部署在这里，直播缓存目录/home/html/hls，录制存储目录/home/html/record，为了方便观看回放，点播目录和录制目录设置为同一目录/home/html/record，这些目录的权限在脚本中已经设置好了。
 #七、下载并安装OBS推流软件，推流开始直播（详细教程，请搜索OBS使用教程，OBS下载地址：https://obsproject.com/）
 #假设直播服务器IP地址是：43.224.34.195，则
 #OBS推流地址是：rtmp://43.224.34.195:1935/hls/  流名称是：live
@@ -45,7 +45,7 @@ rtmp{
 	#push rtmp://167.179.77.30:1935/hls/live;                         //使用时，去掉#，推流到其他直播服务器
 	#pull rtmp://r2.weizan.cn/v/11886982_132310524333578171;          //使用时，去掉#，从其他服务器拉流直播到本服务器。（有客户观看时才会拉流）
 	hls on;
-	hls_path /home/html/hls;                      //直播文件放置的路径，直播介绍时会自动销毁。
+	hls_path /home/html/hls;                      //直播缓存文件放置的路径，直播结束时会自动销毁。
 	hls_fragment 5s;
 	record all;
 	record_path /home/html/record;               //录制文件的路径

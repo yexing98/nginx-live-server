@@ -21,18 +21,20 @@ Proto Recv-Q Send-Q Local Address           Foreign Address         State       
 tcp        0      0 0.0.0.0:1935            0.0.0.0:*               LISTEN      26610/nginx: master 
 tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      26610/nginx: master 
 tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1425/sshd     
-#服务器启动正常的话，会看到1935端口和80号端口已经在监听中。
+#服务器启动正常的话，会看到1935端口和80号端口已经在监听中。重启nginx直播服务器[root@vultr~]#/usr/local/nginx/sbin/nginx -s reload"
 
-#七、下载并安装OBS推流软件，推流开始直播（详细教程，请参考OBS使用教程，下载地址：https://obsproject.com/）
-#假设直播服务器IP地址是：43.224.34.195
+停止nginx直播服务器命令[root@vultr~]#/usr/local/nginx/sbin/nginx -s stop 启动nginx直播服务器命令[root@vultr~]#/usr/local/nginx/sbin/nginx -c  /usr/local/nginx/conf/nginx.conf
+
+#七、下载并安装OBS推流软件，推流开始直播（详细教程，请搜索OBS使用教程，OBS下载地址：https://obsproject.com/）
+#假设直播服务器IP地址是：43.224.34.195，则
 #OBS推流地址是：rtmp://43.224.34.195:1935/hls/  流名称是：live
 #有些推流软件只有一个地址可以填的话，就把流名称合起来：rtmp://43.224.34.195:1935/hls/live
 #电脑端可以用VLC拉流收看，地址是：rtmp://43.224.34.195/hls/live
 #移动端可以用微信直接收看地址：http://43.224.34.195/hls/live.m3u8
 #移动端也可以用MX播放器拉流收看，地址是：http://43.224.34.195/hls/live.m3u8
-#移动端可以用MX播放器拉流收看，地址是：rtmp://43.224.34.195/hls/live
+#移动端还可以用MX播放器拉流收看，地址是：rtmp://43.224.34.195/hls/live
 
-#八、功能说明：Nginx+RTMP支持rtmp直播、hls直播和vod点播，支持直播时录制，直播时同时推拉流到第三方平台，从别的平台拉流到本地直播。具体说明如下：
+#八、功能说明：Nginx+RTMP支持rtmp直播、hls直播和vod点播，支持直播时录制，直播时同时推拉流到第三方平台，从别的平台拉流到本地直播。具体代码在脚本已经有了，说明如下：
 rtmp{
 	server{
 		listen 1935;

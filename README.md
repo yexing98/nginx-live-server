@@ -48,7 +48,7 @@ rtmp{
 	record all;
 	record_path /home/html/record;               //录制文件的路径
 	record_interval 60m;                         //每隔60分钟录制一次
-	record_suffix rec.mp4;                      //录制文件的格式是mp4
+	record_suffix rec.mp4;                      //录制文件的格式是mp4，还可以录制成flv，m3u8格式。
 	record_unique on;                           //直播时按照日期不同自动命名录制文件
 	#record_max_size 51200K;                    //去掉#直播录制文件按每51200K分开
 	}

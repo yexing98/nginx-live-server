@@ -228,5 +228,5 @@ alias stopng="/usr/local/nginx/sbin/nginx -s stop"
 alias startng="/usr/local/nginx/sbin/nginx -c  /usr/local/nginx/conf/nginx.conf"
 alias vimng="vim /usr/local/nginx/conf/nginx.conf"
 EOF
-source  /etc/bashrc	&&
-echo â€œall install completedâ€?
+source  /etc/bashrc&&
+echo "all install completed"

@@ -19,10 +19,6 @@ chmod 777 /home/html/hls&&
 mkdir -p /home/html/record&&
 chmod 777 /home/html/record&&
 cp /usr/local/nginx/conf/nginx.conf /usr/local/nginx/conf/nginx.conf.bak&&
-firewall-cmd --add-port=1935/tcp --permanent &&
-firewall-cmd --add-service=http --permanent &&
-firewall-cmd --reload &&
-systemctl restart firewalld &&
 rm -f /usr/local/nginx/conf/nginx.conf&&
 cat>/usr/local/nginx/conf/nginx.conf<<EOF
 #user  nobody;
@@ -213,4 +209,8 @@ cat>/home/html/index.html<<EOF
 </body>
 </html>
 EOF
+firewall-cmd --add-port=1935/tcp --permanent &&
+firewall-cmd --add-service=http --permanent &&
+firewall-cmd --reload &&
+systemctl restart firewalld &&
 echo “all installer are completed”
